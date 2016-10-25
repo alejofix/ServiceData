@@ -1,0 +1,115 @@
+	{% extends 'Base/Base.html' %}
+	
+	{% block contenido %}
+
+	<div class="panel-body">
+	
+		<!-- inicio Menu -->
+		{% include 'Base/Menu/Administracion_Usuarios.html' %}
+		<!-- Fin Menu  -->	
+		
+		
+		<div class="row">
+		
+			<div class="col-md-12">
+					
+				<!-- formulario | Inicio -->
+					<div class="panel-body">
+						
+						{{ include(template_from_string(formula.inicio)) }}
+							
+							{% for form in formula.contenedor %}
+								
+								{% if form.tipo == "select" %}
+									
+									<div class="form-group">
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										<div class="col-sm-5">
+										
+											{# formula.select(form, cargos, 'getId', ['getId', 'getNombre'], ' - ')|raw #}
+											
+											{% if form.name == 'ca' %}
+												{{ formula.select(form, cargos, 'getId', ['getNombre'])|raw }}
+											{% elseif form.name == 'company' %}
+												{{ formula.select(form, empresas, 'getId', ['getNombre'])|raw }}
+											{% elseif form.name == 'pe' %}
+												{{ formula.select(form, permisos, 'getId', ['getNombre'])|raw }}
+											{% elseif form.name == 'ge' %}
+												{{ formula.select(form, {"F" : "MUJER", "M" : "HOMBRE"})|raw }}
+											{% endif %}
+											
+											
+										</div>
+									</div>
+									
+								{% else %}
+									
+									{% if form.name == "fn" or form.name == "fe" %}
+										
+										<div class="form-group">
+											<label class="col-sm-3 control-label">{{ form.label|e }}</label>
+											
+											<div class="col-sm-3">
+												<input type="text" name="{{ form.name|e }}" class="form-control datepicker" data-start-view="2"/>
+											</div>
+										</div>
+										
+									{% else %}
+										
+										<div class="form-group">
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+											<div class="col-sm-5">
+												{{ form.campo|raw }}
+											</div>
+										</div>
+									{% endif %}
+									
+										
+									
+								{% endif%}
+								
+							{% endfor %}
+							
+							{# comentario #}
+								
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-5">
+						
+										{{ formula.submit('show_loading_bar(100);', 'Crear Usuario', 'btn btn-primary btn-icon icon-left' , 'Send', '<i class="entypo-user-add"></i>')|raw }}
+										{{ formula.reload('location.reload();', 'Nuevo Formulario', 'btn btn-default btn-icon icon-left' , 'reload', '<i class="entypo-user"></i>')|raw }}  
+										
+										
+									</div>
+								</div>
+								
+								
+						{{ formula.fin|raw }}
+			
+					</div>
+				<!-- formulario | Fin -->
+				
+			</div>
+		</div>
+		
+	</div>
+	
+	
+	
+	{% endblock %}
+	
+		{% block script %}
+			
+			{{ include(template_from_string(validacion)) }}
+
+		{% endblock %}
+	
+		{% block css %}
+			<style type="text/css">
+				.error {
+					color: red;
+					font-family: verdana;
+					font-size: 10px;
+					font-weight: bold;
+				}
+			</style>
+		{% endblock %}

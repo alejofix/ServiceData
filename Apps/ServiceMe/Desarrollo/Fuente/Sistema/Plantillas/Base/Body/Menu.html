@@ -1,0 +1,373 @@
+			
+			
+			<ul id="main-menu" class="main-menu">
+			{# Inicio #}	
+				
+				<li {{ URL.modulo.modulo =='Central' ? 'class="active"' }}>
+					<a href="{{ RUTA_APP }}/Central">
+						<i class="entypo-layout"></i>
+		              	<span class="title">Inicio</span>
+					</a>
+		    	</li>
+		    	
+		    {# Administración #}
+				
+		    	<li>
+					<a href="javascript:;">
+						<i class="entypo-database"></i>
+						<span class="title">Administración</span>
+					</a>
+					{% if URL.modulo.modulo =='Usuarios' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.modulo =='Usuarios' ? 'class="active"' }}>
+							<a href="javascript:;">
+								<i class="entypo-user-add"></i>
+								<span class="title">Usuarios</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='Nuevo' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Usuarios/Nuevo">
+										<i class="entypo-menu"></i>
+										<span class="title">Nuevo</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				
+			{# Generador de Guiones #}
+			{# temporalmente fuera de Servicio  
+				<li>
+					<a href="javascript:;">
+						<i class="entypo-docs"></i>
+						<span class="title">Generador de Guiones</span>
+					</a>
+					{% if URL.modulo.modulo =='HFC' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Matrices' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Plataforma' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.modulo =='HFC' ? 'class="active"' }}>
+							<a href="javascript:;">
+								<i class="entypo-traffic-cone"></i>
+								<span class="title">HFC</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='TriplePlay' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/HFC/TriplePlay">
+										<i class="entypo-menu"></i>
+										<span class="title">Triple Play</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='TvBi' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/HFC/TvBi">
+										<i class="entypo-menu"></i>
+										<span class="title">Televisión Bi</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='TvUni' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/HFC/TvUni">
+										<i class="entypo-menu"></i>
+										<span class="title">Televisión Uni</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='Int_Tel' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/HFC/Int_Tel">
+										<i class="entypo-menu"></i>
+										<span class="title">Internet y Telefonía</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					{% if URL.modulo.modulo =='HFC' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Matrices' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Plataforma' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.modulo =='Matrices' ? 'class="active"' }}>
+							<a href="javascript:;">
+								<i class="entypo-map"></i>
+								<span class="title">Matrices</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='TriplePlay' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Matrices/TriplePlay">
+										<i class="entypo-menu"></i>
+										<span class="title">Triple Play</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='TvBi' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Matrices/TvBi">
+										<i class="entypo-menu"></i>
+										<span class="title">Televisión</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='Int_Tel' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Matrices/Int_Tel">
+										<i class="entypo-menu"></i>
+										<span class="title">Internet y Telefonía</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					{% if URL.modulo.modulo =='HFC' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Matrices' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Plataforma' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.modulo =='Plataforma' ? 'class="active"' }}>
+							<a href="javascript:;">
+								<i class="entypo-progress-2"></i>
+								<span class="title">Plataforma</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='Generales' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Plataforma/Generales">
+										<i class="entypo-menu"></i>
+										<span class="title">Generales</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='CableModem' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Plataforma/CableModem">
+										<i class="entypo-menu"></i>
+										<span class="title">Internet</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='Decodificadores' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Plataforma/Decodificadores">
+										<i class="entypo-menu"></i>
+										<span class="title">Televisión</span>
+									</a>
+								</li>
+							</ul>
+							<ul>
+								<li {{ URL.modulo.controlador =='Telefonia' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Plataforma/Telefonia">
+										<i class="entypo-menu"></i>
+										<span class="title">Telefonía</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			*}
+			
+			{# Service Co #}
+				
+				<li>
+					<a href="javascript:;">
+						<i class="entypo-megaphone"></i>
+						<span class="title">Administración ServiceCo</span>
+					</a>
+					{% if URL.modulo.controlador =='Alto_Impacto' %}
+					<ul class="visible">
+					{% elseif URL.modulo.controlador =='Informativos' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.controlador =='Alto_Impacto' ? 'class="active"' }}>
+							<a href="{{ RUTA_APP|e }}/Comunicacion/Alto_Impacto">
+								<i class="entypo-attention"></i>
+								<span class="title">Alto Impacto</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='Alto_Impacto' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Comunicacion/Alto_Impacto">
+										<i class="entypo-menu"></i>
+										<span class="title">Ingresar Aviso</span>
+									</a>
+								</li>
+								<li {{ URL.modulo.metodo =='Listado' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Comunicacion/Alto_Impacto/Listado">
+										<i class="entypo-menu"></i>
+										<span class="title">Listado Reportados</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					{% if URL.modulo.controlador =='Alto_Impacto' %}
+					<ul class="visible">
+					{% elseif URL.modulo.controlador =='Informativos' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.controlador =='Informativos' ? 'class="active"' }}>
+							<a href="{{ RUTA_APP|e }}/Comunicacion/Informativos">
+								<i class="entypo-newspaper"></i>
+								<span class="title">Informativos</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='Informativos' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Comunicacion/Informativos">
+										<i class="entypo-menu"></i>
+										<span class="title">Nuevo Informativo</span>
+									</a>
+								</li>
+								<li {{ URL.modulo.metodo =='Editar' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP }}/Comunicacion/Informativos/Editar">
+										<i class="entypo-menu"></i>
+										<span class="title">Editar Informativo</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			
+			{# APP Mejoramiento #}	
+				
+				<li>
+					<a href="javascript:;">
+						<i class="entypo-chart-area"></i>
+						<span class="title">APP Mejoramiento</span>
+					</a>
+					{% if URL.modulo.modulo =='Proyectos' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Mejoras' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.modulo =='Proyectos' ? 'class="active"' }}>
+							<a href="javascript:;">
+								<i class="entypo-box"></i>
+								<span class="title">Proyectos</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='Nuevo' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP|e }}/Proyectos/Nuevo">
+										<i class="entypo-folder"></i>
+										<span class="title">Nuevo Proyecto</span>
+									</a>
+								</li>
+								<li {{ URL.modulo.controlador =='Lista' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP|e }}/Proyectos/Lista">
+										<i class="entypo-doc-text"></i>
+										<span class="title">Listado</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					{% if URL.modulo.modulo =='Proyectos' %}
+					<ul class="visible">
+					{% elseif URL.modulo.modulo =='Mejoras' %}
+					<ul class="visible">
+					{% else %}
+					<ul>
+					{% endif %}
+						<li {{ URL.modulo.modulo =='Mejoras' ? 'class="active"' }}>
+							<a href="javascript:;">
+								<i class="entypo-briefcase"></i>
+								<span class="title">Mejoras</span>
+							</a>
+							<ul>
+								<li {{ URL.modulo.controlador =='Nueva' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP|e }}/Mejoras/Nueva">
+										<i class="entypo-folder"></i>
+										<span class="title">Nueva Mejora</span>
+									</a>
+								</li>
+								<li {{ URL.modulo.controlador =='Listado' ? 'class="active"' }}>
+									<a href="{{ RUTA_APP|e }}/Mejoras/Listado">
+										<i class="entypo-doc-text"></i>
+										<span class="title">Listado</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			
+			{# GAPE #}
+				
+				<li>
+					<a href="javascript:;">
+						<i class="entypo-clipboard"></i>
+						<span class="title">GAPE</span>
+					</a>
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<i class="entypo-flow-line"></i>
+								<span class="title">Gestión</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				
+			{# Informes #}
+					
+				<li>
+					<a href="javascript:;">
+						<i class="entypo-folder"></i>
+						<span class="title">Informes</span>
+					</a>
+					<ul>
+						<li>
+							<a href="javascript:;">
+								<i class="entypo-flow-line"></i>
+								<span class="title">Gestión</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+			
+			{# Chat #}
+			{# temporalmente fuera de Servicio 	
+				<li>
+					<a href="javascript:;" data-toggle="chat" data-collapse-sidebar="1">
+						<i class="entypo-chat"></i>
+						Chat
+					<span class="badge badge-success chat-notifications-badge is-hidden">0</span>
+					</a>
+				</li>
+			#}	
+			
+			{# Cerrar Sesión #}
+				
+				<li {{ URL.modulo.modulo =='Logout' ? 'class="active"' }}>
+                    <a href="{{ RUTA_APP|e }}/Logout">
+                        <i class="entypo-logout"></i>
+                  		<span class="title">Cerrar Sesión</span>
+					</a>
+                </li> 
+
+
+			</ul>

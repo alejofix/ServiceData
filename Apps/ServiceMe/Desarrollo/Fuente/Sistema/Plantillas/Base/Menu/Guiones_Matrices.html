@@ -1,0 +1,25 @@
+		<div class="profile-env">
+		
+			<section class="profile-info-tabs">
+				<div class="row">
+					
+					<div class="col-sm-offset-2 col-sm-10">
+						<ul class="user-details">
+							<li>
+								<a href="{{ RUTA_APP }}/Matrices">
+									<i class="entypo-user"></i>
+									Generador de Guiones&nbsp;&nbsp;&nbsp;&nbsp;<span>Matrices</span>
+								</a>
+							</li>
+						</ul>
+						<ul class="nav nav-tabs">
+							<li {{ URL.modulo.controlador =='TriplePlay' ? 'class="active"' }}><a href="{{ RUTA_APP }}/Matrices/TriplePlay">Triple Play</a></li>
+							<li {{ URL.modulo.controlador =='TvBi' ? 'class="active"'  }}><a href="{{ RUTA_APP }}/Matrices/TvBi">Televisión</a></li>
+							<li {{ URL.modulo.controlador =='Int_Tel' ? 'class="active"'  }}><a href="{{ RUTA_APP }}/Matrices/Int_Tel">Internet y Telefonía</a></li>
+						</ul>
+					</div>
+					
+				</div>
+			</section>
+		
+		</div>

@@ -1,0 +1,84 @@
+#!/usr/bin/env php
+<?php
+	
+	/**
+	 * NeuralPHP Framework
+	 * Marco de trabajo para aplicaciones web.
+	 * 
+	 * @author Zyos (Carlos Parra) <Neural.Framework@gmail.com>
+	 * @copyright 2006-2015 NeuralPHP Framework
+	 * @license GNU General Public License as published by the Free
+	 * Software Foundation; either version 2 of the License.  
+	 * @see http://neuralframework.com/
+	 * @version 4.0
+	 * 
+	 * This program is free software; you can redistribute it and/or
+	 * modify it under the terms of the GNU General Public License
+	 * as published by the Free Software Foundation; either version 2
+	 * of the License, or 1 any later version.
+	 * 
+	 * This program is distributed in the hope that it will be useful,
+	 * but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 * GNU General Public License for more details.
+	 */
+	
+	require implode(DIRECTORY_SEPARATOR, array(dirname(__DIR__), 'Librerias', 'Cargador.php'));
+	
+	/**
+	 * NAMESPACES
+	 * 
+	 * Namespace necesarios para los distintos
+	 * proceso de consola
+	 */
+	use \Symfony\Component\Console\Application;
+	use \Cli\Aplicacion AS Aplicacion;
+	use \Cli\BaseDatos AS BaseDatos;
+	use \Cli\Formulario AS Formulario;
+	use \Cli\Fuente AS Fuente;
+	use \Cli\Modulos AS Modulos;
+	use \Cli\Publico AS Publico;
+	
+	/**
+	 * CONSTANTE CONSOLA_JSON
+	 * 
+	 * Genera el formato sea automatico para el
+	 * formato json para compresion de codigo
+	 */
+	define('CONSOLA_JSON', JSON_PRETTY_PRINT);
+	
+	/**
+	 * FUNCION date_default_timezone_set
+	 * 
+	 * Para los proceso de consola se se asigna
+	 * el time zone corresondiente
+	 */
+	date_default_timezone_set('America/Bogota');
+	
+	/**
+	 * Genera los objetos necesarios para el
+	 * proceso de consola
+	 */
+	try {
+		$app = new Application;
+		$app->add(new Aplicacion\Nuevo());
+		$app->add(new Aplicacion\Lista());
+		$app->add(new Aplicacion\Eliminar());
+		$app->add(new Aplicacion\Predeterminado());
+		$app->add(new BaseDatos\CrearEntidad());
+		$app->add(new BaseDatos\Lista());
+		$app->add(new Formulario\Desarrollo());		
+		$app->add(new Fuente\Consola());
+		$app->add(new Fuente\ControladorMVC());
+		$app->add(new Fuente\ControladorModulo());
+		$app->add(new Fuente\ModeloMVC());
+		$app->add(new Fuente\ModeloModulo());
+		$app->add(new Modulos\ListaDesarrollo());
+		$app->add(new Modulos\ListaProduccion());
+		$app->add(new Modulos\Nuevo());
+		$app->add(new Publico\WebPublico());		
+		$app->run();
+	}
+	catch(exception $exception) {
+		echo $exception->getMessage();
+	}

@@ -1,0 +1,196 @@
+	{% extends 'Base/Base.html' %}
+	
+	{% block contenido %}
+			
+		<div class="panel-body">
+			
+			<!-- inicio Menu -->
+			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
+			<!-- Fin Menu  -->
+			
+			<div class="col-md-12">
+				
+				<div class="panel-body" id="respuesta">
+					{{ include(template_from_string(formula.inicio)) }}
+					
+						{% for form in formula.contenedor %}
+						
+							{% if form.tipo == "select" %}
+								
+
+								{% if form.name == 'her' %}
+									<div class="form-group">
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										<div class="col-sm-5">
+												{{ formula.select(form, {"CCAA" : "CCAA"})|raw }}
+										</div>
+									</div>			
+								{% elseif form.name == 'pro' %}
+									<div class="form-group">
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										<div class="col-sm-5">		
+												{{ formula.select(form, servicios, 'getId', ['getProducto'])|raw }}
+										</div>
+									</div>			
+								{% elseif form.name == 'proceso' %}
+							 <!-- <div class="form-group"> -->
+										<br />
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										<div class="col-sm-5">		
+											{{ formula.select(form, {"SI" : "SI", "NO" : "NO", "SIGUIENTE" : "SIGUIENTE", "SEGUIMIENTO" : "SEGUIMIENTO"})|raw }}
+										</div>
+										<div id="contenedorruta">
+										
+										<br />
+										</div>
+										<div class="col-sm-5">
+											<label for="field-1" class="col-sm-8 control-label"></label>
+											<button type="button" class="fixbutton2">+ Agregar Ruta</button>
+										</div>
+									</div>
+								{% endif %}
+
+							{% elseif form.tipo == "textarea" %}
+								
+								{# If para textarea agregar nuevo Objetivo #}
+								{% if form.name == 'obj' %}
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Objetivos</label>
+										<div class="col-sm-5">
+											<div class="input-group">
+												<span class="input-group-btn">
+													{{ form.campo|raw }}
+												</span>
+											</div>
+											<div  class="input-group">
+												<span class="input-group-btn" id="contenedor" ></span>
+											</div>
+											<div class="input-group">
+												<label class="col-sm-3 control-label"></label>
+												<span class="input-group-btn">
+													<button type="button" class="fixbutton1">+ Agregar Objetivo</button>
+												</span>
+											</div>
+										</div>
+									</div>
+								
+								{% else %}
+									<div class="form-group">
+										<label for="field-ta" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										
+										<div class="col-sm-5">
+											{{ form.campo|raw }}
+										</div>
+									</div>
+								
+								{% endif %}
+								
+
+							{% else %}
+								
+								{# If para textarea agregar nueva Ruta #}
+								{% if form.name == 'ruta' %}
+									<div class="form-group">
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										<div class="col-sm-5">
+											{{ form.campo|raw }}
+										</div>
+										<br />
+							  <!-- </div>  -->
+								{% else %}
+									<div class="form-group">
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										<div class="col-sm-5">
+											{{ form.campo|raw }}
+										</div>
+									</div>	
+								{% endif%}
+								
+							{% endif%}
+
+						{% endfor %}
+							
+							<div ><br /></div>
+							
+							<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-5">
+										
+										{{ formula.submit('show_loading_bar(100);', 'Solicitar Mejora', 'btn btn-primary btn-icon icon-left' , 'Send', '<i class="entypo-upload-cloud"></i>')|raw }}
+										{{ formula.reload('location.reload();', 'Borrar Formulario', 'btn btn-red btn-icon icon-left' , 'reload', '<i class="entypo-cancel-circled"></i>')|raw }}
+										
+									</div>
+							</div>
+							
+					{{ formula.fin|raw }}
+				</div>
+
+			</div>
+			
+			
+		</div>
+		
+		
+		
+		
+	{% endblock %}
+
+		{% block script %}
+			
+			{{ include(template_from_string(validacion)) }}
+			
+			<script type="text/javascript">
+				jQuery(document).ready(function() {
+					jQuery(".fixbutton1").click(function() {
+					//	jQuery("#contenedor").append('<div class="form-group"><label for="field-1" class="col-sm-3 control-label">Objetivo</label><div class="col-sm-5">{{ formula.contenedor.obj.campo|raw }}</div></div>');
+						jQuery("#contenedor").append('{{ formula.contenedor.obj.campo|raw }}');
+					});
+				});
+			</script>
+			<script type="text/javascript">
+				jQuery(document).ready(function() {
+					jQuery(".fixbutton2").click(function() {
+						jQuery("#contenedorruta").append('<br/><h4>logado</h4><br/>');
+					});
+				});
+			</script>
+
+		{% endblock %}
+	
+		{% block css %}
+			<style type="text/css">
+				.error {
+					color: red;
+					font-family: verdana;
+					font-size: 10px;
+					font-weight: bold;
+				}
+				.fixbutton1 {
+					background-color: #e7e7e7; /* Green */
+				    border: none;
+				    color: #555555;
+				    padding: 3px 8px;
+				    text-align: center;
+				    display: inline-block;
+				    font-size: 13px;
+				    margin: 4px 2px;
+				    cursor: pointer;
+				    -webkit-transition-duration: 0.4s; /* Safari */
+				    transition-duration: 0.4s;
+				    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+				}
+				.fixbutton2 {
+					background-color: #e7e7e7; /* Green */
+				    border: none;
+				    color: #555555;
+				    padding: 3px 8px;
+				    text-align: center;
+				    display: inline-block;
+				    font-size: 13px;
+				    margin: 4px 2px;
+				    cursor: pointer;
+				    -webkit-transition-duration: 0.4s; /* Safari */
+				    transition-duration: 0.4s;
+				    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+				}
+			</style>
+		{% endblock %}

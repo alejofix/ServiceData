@@ -1,0 +1,34 @@
+	{% extends 'Base/Base.html' %}
+	
+	
+{% block contenido %}
+
+		<div class="panel-body">
+			
+			<!-- inicio Menu -->
+			{% include 'Base/Menu/Mejoramiento_Proyectos.html' %}
+			<!-- Fin Menu  -->
+			
+	
+		
+		
+		</div>
+
+{% endblock %}	
+
+		{% block script %}
+			
+			{{ include(template_from_string(validacion)) }}
+
+		{% endblock %}
+	
+		{% block css %}
+			<style type="text/css">
+				.error {
+					color: red;
+					font-family: verdana;
+					font-size: 10px;
+					font-weight: bold;
+				}
+			</style>
+		{% endblock %}

@@ -1,0 +1,24 @@
+			<div class="profile-env">
+			
+				<section class="profile-info-tabs">
+					<div class="row">
+						
+						<div class="col-sm-offset-2 col-sm-10">
+							<ul class="user-details">
+								<li>
+									<a href="{{ RUTA_APP|e }}/Proyectos">
+										<i class="entypo-suitcase"></i>
+										Módulo Mejoramiento&nbsp;&nbsp;&nbsp;&nbsp;<span>Proyectos</span>
+									</a>
+								</li>
+							</ul>
+							<ul class="nav nav-tabs">
+								<li {{ URL.modulo.controlador =='Nuevo' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Proyectos/Nuevo">Nuevo Proyecto</a></li>
+								<li {{ URL.modulo.controlador =='Lista' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Proyectos/Lista">Listado</a></li>
+							</ul>
+						</div>
+						
+					</div>
+				</section>
+			
+			</div>

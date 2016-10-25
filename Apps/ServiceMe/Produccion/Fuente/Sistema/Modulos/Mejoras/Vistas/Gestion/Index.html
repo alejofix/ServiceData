@@ -1,0 +1,101 @@
+ 	{% extends 'Base/Base.html' %}
+	
+	{% block css %}
+		<style>
+			.data_li {
+				margin-bottom: 15px;
+			}
+		</style>
+	{% endblock %}
+	
+	{% block contenido %}
+
+		<div class="panel-body">
+		
+			<!-- inicio Menu -->
+			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
+			<!-- Fin Menu  -->
+		
+			<div class="col-md-12">
+				
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title"><strong>Mejora Id.{{ consulta.getId|e }}</strong></div>
+					</div>
+					
+					<div class="panel-body">
+						{% include 'Index/InformacionMejora.html' %}
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<div class="col-md-12">
+					
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4>Esperando Aprobación <span class="badge badge-danger">{{ consulta.getObjetivos|length }}</span></h4>
+						</div>
+					</div>
+							
+					<div class="panel-body no-padding">
+								
+						<ul class="comments-list">
+							
+							{% for objetivo in consulta.getObjetivos %}
+				
+					<!--
+								{% if objetivo.getEstado.getId == 9 %}
+									<li class="alert alert-danger" id="list_{{ objetivo.getId|e }}">
+								{% elseif objetivo.getEstado.getId == 7 %}
+									<li class="alert alert-info" id="list_{{ objetivo.getId|e }}">
+								{% else %}
+									<li id="list_{{ objetivo.getId|e }}"> 
+								{% endif %}
+						-->
+									<li class="alert alert-{{ objetivo.getEstado.getId == 9 ? 'danger' : objetivo.getEstado.getId == 7 ? 'info' : 'panel-warning' }}" id="list_{{ objetivo.getId|e }}" >		
+										<div class="comment-details">
+											<div class="comment-head">
+												<strong>{{ consulta.getUsuario.getNombreInicial|title|e }} {{ consulta.getUsuario.getNombreFinal|title|e }} {{ consulta.getUsuario.getApellidoInicial|title|e }} {{ consulta.getUsuario.getApellidoFinal|title|e }} - {{ consulta.getUsuario.getEmpresa.getNombre|title|e }}</strong>
+											</div>
+											
+											<div class="comment-text">
+												{{ objetivo.getObjetivo|lower|capitalize|e }}
+											</div>
+													
+											<div class="comment-footer">
+												<div class="comment-time">{{ objetivo.getFechaObjetivo|date("Y-m-d H:i:s")|e }}</div>
+												<div class="action-links" id="action_{{ objetivo.getId|e }}">
+													{% if objetivo.getEstado.getId == 1 %}
+														<a href="javascript:;" class="approve aprobado" data="{{ objetivo.getId|e }}"><i class="entypo-check"></i>Aprobado</a>
+														<a href="javascript:;" class="delete no_aprobado" data="{{ objetivo.getId|e }}"><i class="entypo-cancel"></i>No Aprobado</a>
+													{% else %}
+														<strong>{{ objetivo.getEstado.getNombre|e }}</strong>
+													{% endif %}
+												</div>
+											</div>
+										</div>
+									</li>
+								
+							{% endfor %}
+							
+								
+						</ul>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+
+	{% endblock %}
+
+	{% block script %}
+		<script type="text/javascript" src="{{ RUTA_APP|e }}/Mejoras/Gestion/jsController/controlador.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				controller.init();
+			});
+		</script>
+	{% endblock %}

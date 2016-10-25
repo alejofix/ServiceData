@@ -1,0 +1,75 @@
+ 	{% extends 'Base/Base.html' %}
+	
+	{% block css %}
+		<style>
+			.data_li {
+				margin-bottom: 15px;
+			}
+		</style>
+	{% endblock %}
+	
+	{% block contenido %}
+		
+		<div class="panel-body">
+		
+			<!-- inicio Menu -->
+			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
+			<!-- Fin Menu  -->
+		
+			<div class="col-md-12">
+				
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title"><strong>Mejora Id.{{ consulta.getId|e }}</strong></div>
+					</div>
+					
+					<div class="panel-body">
+						{% include 'Index/InformacionMejora.html' %}
+					</div>
+					
+				</div>
+
+			</div>
+
+			<hr />
+			
+			<div class="col-md-12">
+				
+				{% for objetivo in consulta.getObjetivos %}
+					
+						<!--<div class="panel {{ objetivo.getEstado.getId == 9 ? 'panel-danger' : 'panel-warning' }}" data-collapsed="0">-->
+						<div class="panel {{ objetivo.getEstado.getId == 9 ? 'panel-danger' : objetivo.getEstado.getId == 7 ? 'panel-info' : 'panel-warning' }}" data-collapsed="0">
+							<div class="panel-heading">
+								<div class="panel-title">Objetivo {{ loop.index|e }} - {{ objetivo.getFechaObjetivo|date("Y-m-d H:i:s")|e }} - {{ objetivo.getEstado.getNombre|e }}</div>
+							</div>
+							<div class="panel-body">
+								<p><strong>Descripción:</strong> {{ objetivo.getObjetivo|e }}</p>
+								
+								
+								<div class="tab-content">
+									{% if objetivo.getNotas|length >= 1 %}
+										
+										<ol>
+											{% for nota in objetivo.getNotas %}
+												<li class="data_li">
+													<strong>Fecha: {{ nota.getFecha|date("Y-m-d H:i:s")|e }}</strong><br />
+													<strong>Usuario:</strong> {{ nota.getUsuario.getNombreInicial|title|e }} {{ nota.getUsuario.getApellidoInicial|title|e }} [ {{ nota.getUsuario.getUsuario|e }} ]<br />
+													<strong>Observación:</strong> {{ nota.getNota|e }}
+												</li>
+											{% endfor %}
+										</ol>
+										
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					
+				{% else %}
+					
+				{% endfor %}
+				
+			</div>
+			
+		</div>
+
+	{% endblock %}

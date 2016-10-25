@@ -1,0 +1,7 @@
+clase
+@Complemento(url="url de envio de formulario", class="clase css", archivos=true)
+** archivos= true: para enviar archivos por el formulario para utilizar campos input type file
+Campos
+@Input(type="text, password, radio, checkbox", class="clase css", id="id", placeholder="placeholder", label="titulo", required=true, autofocus=true)
+@Select(class="clase css", id="id", label="titulo", required=true, autofocus=true)
+@Textarea(class="clase css", id="id", placeholder="placeholder", label="titulo", required=true, autofocus=true)

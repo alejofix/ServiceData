@@ -1,0 +1,26 @@
+	{% extends 'Base/Base.html' %} 
+	
+	{% block contenido %}
+	
+	<div class="panel-body">
+	
+		<!-- inicio Menu -->
+		{% include 'Base/Menu/ServiceCo.html' %}
+		<!-- Fin Menu  -->
+		
+				<ul class="nav nav-pills">
+				  <li role="presentation" class="inactive"><a href="{{ RUTA_APP|e }}/Comunicacion/Informativos">Nuevo Informativo</a></li>
+				  <li role="presentation" class="active"><a href="{{ RUTA_APP|e }}/Comunicacion/Informativos/Editar">Editar Informativos</a></li>
+				</ul>
+		
+		<!-- Contenido INICIO-->
+		<div class="row">
+		
+		
+		
+		</div>	
+		<!-- Contenido FIN-->
+	
+	</div>
+	
+	{% endblock %}

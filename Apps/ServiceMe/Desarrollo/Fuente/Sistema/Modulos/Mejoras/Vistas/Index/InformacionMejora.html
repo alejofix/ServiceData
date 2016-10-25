@@ -1,0 +1,57 @@
+						<div class="row">
+						
+							<div class="col-md-12">
+								<div class="member-details">
+									<h4>
+										<a href="extra-timeline.html">
+											<strong>Titulo: </strong>{{ consulta.getTitulo|title|e }}    
+										</a>
+									</h4>
+									
+									<div class="row info-list">
+										
+										<div class="col-sm-4">
+											<i class="entypo-user"></i>
+											Solicitante <a href="javascript:;">{{ consulta.getUsuario.getNombreInicial|title|e }} {{ consulta.getUsuario.getNombreFinal|title|e }} {{ consulta.getUsuario.getApellidoInicial|title|e }} {{ consulta.getUsuario.getApellidoFinal|title|e }} </a>
+										</div>
+										
+										<div class="col-sm-4">
+											<i class="entypo-user-add"></i>
+											Usuario <a href="javascript:;">{{ consulta.getUsuario.getUsuario|e }}</a>
+										</div>
+										
+										<div class="col-sm-4">
+											<i class="entypo-briefcase"></i>
+											Empresa <a href="javascript:;">{{ consulta.getUsuario.getEmpresa.getNombre|title|e }}</a>
+										</div>
+										
+										<div class="clear"></div>
+										
+										<div class="col-sm-4">
+											<i class="entypo-tools"></i>
+											Herramienta <a href="javascript:;">{{ consulta.getHerramienta|e }}</a> / <a href="javascript:;">{{ consulta.getProducto.getProducto|title|e }}</a> 
+										</div>
+										
+										<div class="col-sm-4">
+											<i class="entypo-flow-tree"></i>
+											Árbol  <a href="javascript:;">{{ consulta.getArbol|title|e }}</a>
+										</div>
+										
+										<div class="col-sm-4">
+											<i class="entypo-calendar"></i>
+											Fecha <a href="javascript:;">{{ consulta.getFecha|date("Y-m-d H:i:s")|e }}</a>
+										</div>
+									</div>
+									<h5>
+										<a href="javascript:;">
+											<strong>Descripción: </strong>
+											<blockquote>
+												<p>	
+													{{ consulta.getDescripcion|lower|capitalize|e }}
+												</p>
+											</blockquote>   
+										</a>
+									</h5>
+								</div>
+							</div>
+						</div>

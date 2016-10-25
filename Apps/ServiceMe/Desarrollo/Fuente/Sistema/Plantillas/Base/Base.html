@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+		<!-- Include <head> --> 
+			{% include 'Base/Body/Head.html' %}
+			{% block css %}
+			{% endblock %}
+		<!-- -->
+	</head>
+
+	<body class="page-body">
+	
+		<div class="page-container">
+			
+			<div class="sidebar-menu">
+				<div class="sidebar-menu-inner">
+					
+					<header class="logo-env">
+		
+		<!-- Include <header> --> 
+						{% include 'Base/Body/Header.html' %}
+		<!-- -->
+					</header>
+		
+		<!-- Include Menú Lateral --> 
+						{% include 'Base/Body/Menu.html' %}
+		<!-- -->
+					
+				</div>
+			</div>
+		
+			<div class="main-content">
+				<div class="row">
+		<!-- Include Menú Usuario --> 
+						{% include 'Base/Body/Menu_Usuario.html' %}
+		<!-- -->
+		<!-- Include Menú Usuario --> 
+						{% include 'Base/Body/Menu_Superior.html' %}
+		<!-- -->
+				</div><hr />
+				<div class="row">
+	<!-- Contenido Principal  -->		
+					{% block contenido %}
+					
+					
+					{% endblock %}
+	<!-- --> 
+				</div>
+				<br />
+		<!-- Include Footer --> 
+						{% include 'Base/Body/Footer.html' %}
+		<!-- -->
+			</div>
+		
+		<!-- Include Chat --> 
+						{% include 'Base/Body/Chat.html' %}
+		<!-- -->
+			
+		</div>
+	
+		<!-- Include Scripts --> 
+			{% include 'Base/Body/Script.html' %}
+		<!-- -->
+		
+		{% block script %}
+		{% endblock %}
+		
+	</body>
+</html>

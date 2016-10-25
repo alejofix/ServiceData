@@ -1,0 +1,24 @@
+		<div class="profile-env">
+		
+			<section class="profile-info-tabs">
+				<div class="row">
+					
+					<div class="col-sm-offset-2 col-sm-10">
+						<ul class="user-details">
+							<li>
+								<a href="{{ RUTA_APP }}/Comunicacion">
+									<i class="entypo-user"></i>
+									Administración&nbsp;&nbsp;&nbsp;&nbsp;<span>ServiceCo</span>
+								</a>
+							</li>
+						</ul>
+						<ul class="nav nav-tabs">
+							<li {{ URL.modulo.controlador =='Alto_Impacto' ? 'class="active"' }}><a href="{{ RUTA_APP }}/Comunicacion/Alto_Impacto">Alto impacto</a></li>
+							<li {{ URL.modulo.controlador =='Informativos' ? 'class="active"' }}><a href="{{ RUTA_APP }}/Comunicacion/Informativos">Informativos</a></li>
+						</ul>
+					</div>
+					
+				</div>
+			</section>
+		
+		</div>

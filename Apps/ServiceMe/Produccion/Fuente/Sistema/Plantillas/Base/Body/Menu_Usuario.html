@@ -1,0 +1,38 @@
+			<div class="col-md-6 col-sm-8 clearfix">
+		
+				<ul class="user-info pull-left pull-none-xsm">
+		
+					<!-- Profile Info -->
+					<li class="profile-info dropdown">
+		
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					
+							{% if app.usuario.genero=='F' %}
+								<img src="{{ RUTA_PUBLICO|e }}/assets/images/niña.png" alt="" width="50" />
+							{% else %}
+								<img src="{{ RUTA_PUBLICO|e }}/assets/images/niño.png" alt="" width="50" />
+							{% endif %}
+							
+							{{ app.usuario.nombre|title }}&nbsp;{{ app.usuario.apellido|title }}
+				
+						</a>
+		
+						<ul class="dropdown-menu">
+		
+							<!-- Reverse Caret -->
+							<li class="caret"></li>
+		
+							<!-- Profile sub-links -->
+							<li>
+								<a href="javascript:;">
+									<i class="entypo-user"></i>
+									Editar Perfil
+								</a>
+							</li>
+						</ul>
+					</li>
+		
+				</ul>
+		
+			</div>

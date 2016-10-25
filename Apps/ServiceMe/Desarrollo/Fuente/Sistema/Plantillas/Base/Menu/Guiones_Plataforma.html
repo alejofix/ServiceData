@@ -1,0 +1,26 @@
+		<div class="profile-env">
+		
+			<section class="profile-info-tabs">
+				<div class="row">
+					
+					<div class="col-sm-offset-2 col-sm-10">
+						<ul class="user-details">
+							<li>
+								<a href="{{ RUTA_APP }}/Plataforma">
+									<i class="entypo-user"></i>
+									Generador de Guiones&nbsp;&nbsp;&nbsp;&nbsp;<span>Plataforma</span>
+								</a>
+							</li>
+						</ul>
+						<ul class="nav nav-tabs">
+							<li {{ URL.modulo.controlador =='Generales' ? 'class="active"' }}><a href="{{ RUTA_APP }}/Plataforma/Generales">Generales</a></li>
+							<li {{ URL.modulo.controlador =='CableModem' ? 'class="active"'  }}><a href="{{ RUTA_APP }}/Plataforma/CableModem">Internet</a></li>
+							<li {{ URL.modulo.controlador =='Decodificadores' ? 'class="active"'  }}><a href="{{ RUTA_APP }}/Plataforma/Decodificadores">Televisión</a></li>
+							<li {{ URL.modulo.controlador =='Telefonia' ? 'class="active"'  }}><a href="{{ RUTA_APP }}/Plataforma/Telefonia">Telefonía</a></li>
+						</ul>
+					</div>
+					
+				</div>
+			</section>
+		
+		</div>

@@ -1,0 +1,37 @@
+ 	{% extends 'Base/Base.html' %}
+	
+	{% block css %}
+		<style>
+			.data_li {
+				margin-bottom: 15px;
+			}
+		</style>
+	{% endblock %}
+	
+	{% block contenido %}
+		
+		<div class="panel-body">
+		
+			<!-- inicio Menu -->
+			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
+			<!-- Fin Menu  -->
+		
+			<div class="col-md-12">
+				
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="panel-title"><strong>Mejora Creada </strong></div>
+					</div>
+					
+					<div class="panel-body">
+						INFORMACION MEJORA
+
+					</div>
+					
+				</div>
+
+			</div>
+			
+		</div>
+
+	{% endblock %}

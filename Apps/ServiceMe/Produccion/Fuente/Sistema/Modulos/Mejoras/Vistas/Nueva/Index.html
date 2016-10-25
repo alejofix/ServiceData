@@ -1,0 +1,147 @@
+	{% extends 'Base/Base.html' %}
+	
+	{% block contenido %}
+		
+		<div class="panel-body">
+		
+			<!-- inicio Menu -->
+			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
+			<!-- Fin Menu  -->
+		
+			<div class="col-md-12">
+				
+				<div class="panel-body" id="respuesta">
+					
+					{{ include(template_from_string(formula.inicio)) }}
+					{% for form in formula.contenedor if form.name not in ['obj', 'ruta', 'proceso', 'archivos']  %}
+						
+						<div class="form-group">
+							<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+							<div class="col-sm-5">
+									
+									{% if form.tipo == 'select' %}
+										
+										{% if form.name == 'her' %}
+											{{ formula.select(form, {"CCAA" : "CCAA"})|raw }}
+										{% elseif form.name == 'pro' %}
+											{{ formula.select(form, servicios, 'getId', ['getProducto'])|raw }}
+										{% endif %}
+										
+									{% else %}
+										{{ form.campo|raw }}
+									{% endif %}
+							</div>
+						</div>
+						
+					{% endfor %}
+					
+					<!-- adjuntos -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Adjuntos</label>
+						<div class="col-sm-5">
+							{{ formula.contenedor.archivos.campo|raw }}
+						</div>
+					</div>
+						<div id="adjunto_cont" style="margin-top: 8px;"></div>
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-5">
+							<button type="button" class="fixbutton adj_add"><i class="entypo-plus-circled"></i>Otro Adjunto</button>
+						</div>
+					</div>
+					<!-- adjuntos FIN -->
+		
+					<!-- objetivos  -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Objetivos</label>
+						<div class="col-sm-5">
+							{{ formula.contenedor.obj.campo|raw }}
+						</div>
+					</div>
+						<div id="contenedor" style="margin-top: 8px;"></div>
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-5">
+							<button type="button" class="fixbutton obj_add"><i class="entypo-plus-circled"></i>Otro Objetivo</button>
+						</div>
+					</div>
+					<!-- objetivos FIN -->
+					
+					<!-- ruta - descripcion  -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label">{{ formula.contenedor.ruta.label|e }}</label>
+						<div class="col-sm-5">
+							{{ formula.contenedor.ruta.campo|raw }}
+						</div>
+						<br /><br /><br />
+						<label class="col-sm-3 control-label">{{ formula.contenedor.proceso.label|e }}</label>
+						<div class="col-sm-5">
+							{{ formula.select(formula.contenedor.proceso, {"SI" : "SI", "NO" : "NO", "SIGUIENTE" : "SIGUIENTE", "SEGUIMIENTO" : "SEGUIMIENTO"})|raw }}
+						</div>
+					</div>
+						<div id="contenedorruta" style="margin-top: 8px;"></div>
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-5">
+							<button type="button" class="fixbutton ruta_add"><i class="entypo-plus-circled"></i>Otra Ruta</button>
+						</div>
+					</div>
+					<!-- ruta - descripcion   FIN -->
+					
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-5">
+							{{ formula.submit('show_loading_bar(100);', 'Solicitar Mejora', 'btn btn-primary btn-icon icon-left' , 'Send', '<i class="entypo-upload-cloud"></i>')|raw }}
+							{{ formula.reload('location.reload();', 'Borrar Formulario', 'btn btn-red btn-icon icon-left' , 'reload', '<i class="entypo-cancel-circled"></i>')|raw }}
+						</div>
+					</div>
+					
+					
+					{{ formula.fin|raw }}	
+				</div>
+			</div>
+		</div>
+		
+	{% endblock %}
+	
+	{% block script %}
+		
+		{{ include(template_from_string(validacion)) }}
+		
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				
+				jQuery(".ruta_add").click(function() {
+					jQuery("#contenedorruta").append('{% spaceless %}<div class="form-group"><div class="form-group"><label for="field-1" class="col-sm-3 control-label">{{formula.contenedor.ruta.label|e}}</label><div class="col-sm-5">{{formula.contenedor.ruta.campo|raw}}</div></div><div class="form-group"><label for="field-1" class="col-sm-3 control-label">{{formula.contenedor.proceso.label|e}}</label><div class="col-sm-5">{{formula.select(formula.contenedor.proceso,{"SI" : "SI", "NO" : "NO", "SIGUIENTE" : "SIGUIENTE", "SEGUIMIENTO" : "SEGUIMIENTO"})|raw}}</div></div></div>{% endspaceless %}');
+				});
+				jQuery(".obj_add").click(function() {
+					jQuery("#contenedor").append('{% spaceless %}<div class="form-group"><label class="col-sm-3 control-label">Objetivos</label><div class="col-sm-5"><div class="input-group"><span class="input-group-btn">{{formula.contenedor.obj.campo|raw}}</span></div></div></div>{% endspaceless %}');
+				});
+				jQuery(".adj_add").click(function() {
+					jQuery("#adjunto_cont").append('{% spaceless %}<div class="form-group"><label class="col-sm-3 control-label">Adjuntos</label><div class="col-sm-5"><div class="input-group"><span class="input-group-btn">{{formula.contenedor.archivos.campo|raw}}</span></div></div></div>{% endspaceless %}');
+				});
+			});
+		</script>
+		
+	{% endblock %}
+	
+	{% block css %}
+			<style type="text/css">
+				.error {
+					color: red;
+					font-family: verdana;
+					font-size: 10px;
+					font-weight: bold;
+				}
+				.fixbutton {
+					background-color: #e7e7e7; /* Green */
+				    border: none;
+				    color: #555555;
+				    padding: 3px 8px;
+				    text-align: center;
+				    display: inline-block;
+				    font-size: 13px;
+				    margin: 4px 2px;
+				    cursor: pointer;
+				    -webkit-transition-duration: 0.4s; /* Safari */
+				    transition-duration: 0.4s;
+				    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+				}
+			</style>
+		{% endblock %}

@@ -1,0 +1,90 @@
+	{% extends 'Base/Base.html' %}
+	
+{% block contenido %}
+			
+		<div class="panel-body">
+			
+			<!-- inicio Menu -->
+			{% include 'Base/Menu/Mejoramiento_Proyectos.html' %}
+			<!-- Fin Menu  -->
+			
+			<div class="col-md-12">
+				
+					<div class="panel-body">
+						
+						{{ include(template_from_string(formula.inicio)) }}
+							
+							{% for form in formula.contenedor %}
+								
+								{% if form.tipo == "select" %}
+									<div class="form-group">
+										<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										<div class="col-sm-5">
+										
+											{# formula.select(form, cargos, 'getId', ['getId', 'getNombre'], ' - ')|raw #}
+											
+											{% if form.name == 'tip' %}
+												{{ formula.select(form, {"N" : "NORMAL", "C" : "CONTINUO"})|raw }}
+											{% endif %}
+											
+											
+										</div>
+									</div>
+								{% elseif form.tipo == "textarea" %}
+									<div class="form-group">
+										<label for="field-ta" class="col-sm-3 control-label">{{ form.label|e }}</label>
+										
+										<div class="col-sm-5">
+											{{ form.campo|raw }}
+										</div>
+									</div>
+								{% else %}
+									<div class="form-group">
+											<label for="field-1" class="col-sm-3 control-label">{{ form.label|e }}</label>
+												<div class="col-sm-5">
+													{{ form.campo|raw }}
+												</div>
+									</div>
+								{% endif%}
+								
+						
+							{% endfor %}
+							
+								<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-5">
+											
+											
+											{{ formula.submit('show_loading_bar(100);', 'Crear Proyecto', 'btn btn-primary btn-icon icon-left' , 'Send', '<i class="entypo-folder"></i>')|raw }}
+											{{ formula.reload('location.reload();', 'Borrar Formulario', 'btn btn-red btn-icon icon-left' , 'reload', '<i class="entypo-cancel-circled"></i>')|raw }}
+											
+										</div>
+								</div>
+								
+					
+						{{ formula.fin|raw }}
+					
+					</div>
+			</div>
+			
+			
+		</div>
+		
+		
+{% endblock %}
+
+		{% block script %}
+			
+			{{ include(template_from_string(validacion)) }}
+
+		{% endblock %}
+	
+		{% block css %}
+			<style type="text/css">
+				.error {
+					color: red;
+					font-family: verdana;
+					font-size: 10px;
+					font-weight: bold;
+				}
+			</style>
+		{% endblock %}

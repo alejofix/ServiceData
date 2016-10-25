@@ -1,0 +1,30 @@
+			<div class="profile-env">
+			
+				<section class="profile-info-tabs">
+					<div class="row">
+						
+						<div class="col-sm-offset-2 col-sm-10">
+							<ul class="user-details">
+								<li>
+									<a href="{{ RUTA_APP|e }}/Mejoras">
+										<i class="entypo-suitcase"></i>
+										Módulo Mejoramiento&nbsp;&nbsp;&nbsp;&nbsp;<span>Mejoras</span>
+									</a>
+								</li>
+							</ul>
+							<ul class="nav nav-tabs">
+								<li {{ URL.modulo.controlador =='Nueva' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Nueva">Solicitar Mejora</a></li>
+								<li {{ URL.modulo.controlador =='Listado' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Listado">Listado</a></li>
+								{% if URL.modulo.controlador =='Observar' %}
+									<li {{ URL.modulo.controlador =='Observar' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}">Obervar</a></li>		
+								{% endif %}
+								{% if URL.modulo.controlador =='Gestion' %}
+									<li {{ URL.modulo.controlador =='Gestion' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}">Gestion</a></li>		
+								{% endif %}
+							</ul>
+						</div>
+						
+					</div>
+				</section>
+			
+			</div>

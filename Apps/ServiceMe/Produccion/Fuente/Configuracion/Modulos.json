@@ -1,0 +1,57 @@
+{
+    "configuracion": {
+        "habilitado": true
+    },
+    "modulos": {
+        "Central": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Modulo de Home Central"
+        },
+        "Comunicacion": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Modulo Service Co Comunicacion con Aliado"
+        },
+        "Formularios": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Generador de formularios iframe"
+        },
+        "HFC": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Generador Guiones HFC"
+        },
+        "Index": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Login de la aplicacion"
+        },
+        "Matrices": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Generador Guiones Matrices"
+        },
+        "Mejoras": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "escalamiento mejoras a mejoramiento"
+        },
+        "Plataforma": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Generador Guiones Plataforma"
+        },
+        "Proyectos": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "gestor Proyectos de Mejoramiento"
+        },
+        "Usuarios": {
+            "habilitado": true,
+            "mantenimiento": false,
+            "descripcion": "Modulo administracion de usuarios"
+        }
+    }
+}

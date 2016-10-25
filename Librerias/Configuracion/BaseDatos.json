@@ -1,0 +1,20 @@
+{
+	"ServiceMe" : {
+		"Desarrollo" : {
+			"dbname" : "servicesql",
+			"user" : "root",
+			"password" : "secret",
+			"host" : "localhost",
+			"driver" : "pdo_mysql",
+			"charset" : "utf8"
+		},
+		"Produccion" : {
+			"dbname" : "servicesql",
+			"user" : "root",
+			"password" : "secret",
+			"host" : "localhost",
+			"driver" : "pdo_mysql",
+			"charset" : "utf8"
+		}
+	}
+}
