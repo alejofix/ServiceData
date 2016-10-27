@@ -1,7 +1,7 @@
 {
 	"ServiceMe" : {
 		"Desarrollo" : {
-			"dbname" : "servicesql",
+			"dbname" : "ServiceDataSQL",
 			"user" : "root",
 			"password" : "secret",
 			"host" : "localhost",
@@ -9,7 +9,7 @@
 			"charset" : "utf8"
 		},
 		"Produccion" : {
-			"dbname" : "servicesql",
+			"dbname" : "ServiceDataSQL",
 			"user" : "root",
 			"password" : "secret",
 			"host" : "localhost",

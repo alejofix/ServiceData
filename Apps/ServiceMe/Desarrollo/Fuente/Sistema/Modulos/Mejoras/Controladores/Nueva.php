@@ -88,6 +88,7 @@
 					throw new Excepcion('No fue posible guardar los datos, validar con el administrador del sistema', 0, APP, 'mejoras:nueva');
 				endif;
 				// echo json_encode(array('status' => $resultado));
+				$this->plantilla->parametro('consulta', $this->modelo->Documentar());
 				echo $this->plantilla->mostrarPlantilla('Nueva', 'Documentar.html');
 			else:
 				echo json_encode(array('status' => false, 'mensajes' => $this->validarFormulario->mensajeError()));

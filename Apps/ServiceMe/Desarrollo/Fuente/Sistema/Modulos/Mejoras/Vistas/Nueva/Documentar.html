@@ -13,24 +13,104 @@
 		<div class="panel-body">
 		
 			<!-- inicio Menu -->
-			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
+			<div class="profile-env">
+			
+				<section class="profile-info-tabs">
+					<div class="row">
+						
+						<div class="col-sm-offset-2 col-sm-10">
+							<ul class="user-details">
+								<li>
+									<a href="{{ RUTA_APP|e }}/Mejoras">
+										<i class="entypo-suitcase"></i>
+										Módulo Mejoramiento&nbsp;&nbsp;&nbsp;&nbsp;<span>Mejoras</span>
+									</a>
+								</li>
+							</ul>
+							<ul class="nav nav-tabs">
+								<li {{ URL.modulo.controlador =='Nueva' ? 'class="inactive"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Nueva">Solicitar Mejora</a></li>
+								<li class="active"><a href="javascript:;">Mejoras Activas</a></li>
+								<li {{ URL.modulo.controlador =='Listado' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Listado">Listado</a></li>
+								{% if URL.modulo.controlador =='Observar' %}
+									<li {{ URL.modulo.controlador =='Observar' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}">Obervar</a></li>		
+								{% endif %}
+								{% if URL.modulo.controlador =='Gestion' %}
+									<li {{ URL.modulo.controlador =='Gestion' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}">Gestion</a></li>		
+								{% endif %}
+							</ul>
+						</div>
+						
+					</div>
+				</section>
+			
+			</div>
 			<!-- Fin Menu  -->
-		
-			<div class="col-md-12">
+			
+			{% for mejora in consulta %}
 				
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<div class="panel-title"><strong>Mejora Creada </strong></div>
-					</div>
+				<div class="col-md-12">
 					
-					<div class="panel-body">
-						INFORMACION MEJORA
-
+					{% if app.usuario.usuario == mejora.getUsuario.getUsuario %}
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<h4>
+									Mejora Creada # <b>{{ mejora.getId|e }}</b> 
+								</h4>
+							</div>
+						</div>
+						<div class="panel-body no-padding">
+							<ul class="comments-list">
+								<li>
+									<div class="comment-details">
+										<div class="row info-list">
+											
+											<h4>
+												<a href="extra-timeline.html">
+													<strong>Titulo: </strong>{{ mejora.getTitulo|title|e }}  
+												</a>
+											</h4>
+											<div class="clear"></div>
+											<div class="col-sm-4">
+												<i class="entypo-briefcase"></i>
+												Empresa <a href="javascript:;">{{ mejora.getUsuario.getEmpresa.getNombre|title|e }}</a>
+											</div>
+											<div class="col-sm-4">
+												<i class="entypo-tools"></i>
+												Herramienta <a href="javascript:;">{{ mejora.getHerramienta|e }}</a> / <a href="javascript:;">{{ mejora.getProducto.getProducto|title|e }}</a> 
+											</div>
+											<div class="col-sm-4"></div>
+											<div class="clear"></div>
+											<div class="col-sm-12">
+												<i class="entypo-flow-tree"></i>
+												Árbol  <a href="javascript:;">{{ mejora.getArbol|e }}</a>
+											</div>
+											<div class="clear"><br /></div>
+											<strong>Descripción: </strong>
+											<blockquote>
+												<p>	
+													{{ mejora.getDescripcion|e }}
+												</p>
+											</blockquote>   
+										</a>
+										</div>
+										<div class="comment-footer">
+											<div class="comment-time">
+											{{ mejora.getFecha|date("Y-m-d H:i")|e }}
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
 					</div>
+					{% else %}
+					{% endif %}
 					
 				</div>
-
-			</div>
+				
+			{% else %}
+			{% endfor %}
 			
 		</div>
 

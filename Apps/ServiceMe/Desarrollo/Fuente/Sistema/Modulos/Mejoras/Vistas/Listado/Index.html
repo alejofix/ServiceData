@@ -15,70 +15,117 @@
 			<!-- inicio Menu -->
 			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
 			<!-- Fin Menu  -->
-		
-			<!--	<h3>Listado de Mejoras</h1> -->
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="panel-title">Listado de Mejoras</div>
-				</div>
-					
-				<div class="panel-body with-table">
-					<table class="table table-bordered table-responsive">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Fecha</th>
-								<th>Usuario</th>
-								<th>Empresa</th>
-								<th>Herramienta</th>
-								<th>Estado</th>
-								<th>Acciones</th>
-							</tr>
-						</thead>
-						
-						<tbody>
-							
-							{% for mejora in consulta %}
-								<tr>
-									<td>{{ mejora.getId|e }}</td>
-									<td>{{ mejora.getFecha|date("Y-m-d H:i:s")|e }}</td>
-									<td>{{ mejora.getUsuario.getUsuario|e }}</td>
-									<td>{{ mejora.getUsuario.getEmpresa.getNombre|title|e }}</td>
-									<td>{{ mejora.getHerramienta|e }}</td>
-									<td>
-										<span class="btn {{ mejora.getEstado.getId == 1 ? 'btn-warning' : 'btn-info' }} btn-block btn-xs">{{ mejora.getEstado.getNombre|e }}</span>
-									</td>
-									<td>
-										<a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}" class="btn btn-info btn-icon">Observar <i class="entypo-search"></i></a>
-										
-										{% if app.sesion.Mejoras.actualizar == true and mejora.getEstado.getId == 1  %}
-											<a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}" class="btn btn-danger btn-icon">Gestion <i class="entypo-search"></i></a>
-										{% endif %}
-									</td>
-								</tr>
-							{% else %}
-								<tr>
-									<td colspan="7">
-										<div class="page-error-404">
-											<div class="error-symbol">
-												<a href="{{ RUTA_APP|e }}/Mejoras/Nueva">
-													<i class="entypo-folder"></i>
-												</a>
-											</div>
-											<div class="error-text">
-												<p>No hay registro de Mejoras!</p>
-											</div>
-											<hr />
-										</div>
-									</td>
-								</tr>
-							{% endfor %}
-							
-						</tbody>
-					</table>
-				</div>
-			</div>
 			
-		</div>
+			<!--	<h3>Listado de Mejoras</h1> -->
+				
+				<table class="table table-bordered datatable" id="table-1">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Fecha</th>
+							<th>Usuario</th>
+							<th>Empresa</th>
+							<th>Herramienta</th>
+							<th>Estado</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for mejora in consulta %}	
+						<tr class="odd gradeX">
+							<td>{{ mejora.getId|e }}</td>
+							<td>{{ mejora.getFecha|date("Y-m-d H:i:s")|e }}</td>
+							<td>{{ mejora.getUsuario.getUsuario|e }}</td>
+							<td>{{ mejora.getUsuario.getEmpresa.getNombre|title|e }}</td>
+							<td>{{ mejora.getHerramienta|e }}</td>
+							<td>
+								<span class="btn {{ mejora.getEstado.getId == 1 ? 'btn-warning' : 'btn-info' }} btn-block btn-xs">{{ mejora.getEstado.getNombre|e }}</span>
+							</td>
+							<td>
+								<a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}" class="btn btn-info btn-icon">Observar <i class="entypo-search"></i></a>
+								{% if app.sesion.Mejoras.actualizar == true and mejora.getEstado.getId == 1  %}
+									<a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}" class="btn btn-danger btn-icon">Gestion <i class="entypo-search"></i></a>
+								{% endif %}
+							</td>
+						</tr>
+					{% else %}
+					<hr />
+					<div class="page-error-404">
+						<div class="error-symbol">
+							<a href="{{ RUTA_APP|e }}/Mejoras/Nueva">
+								<i class="entypo-folder"></i>
+							</a>
+						</div>
+						<div class="error-text">
+							<p>No hay registro de Mejoras!</p>
+						</div>
+						<hr />
+					</div>
+					<br />
+					{% endfor %}	
+						</tbody>
+					
+				</table>
+
+		</div><!-- body end --> 
 
 	{% endblock %}
+	
+	{% block script %}
+	
+	<script type="text/javascript">
+		var responsiveHelper;
+		var breakpointDefinition = {
+		    tablet: 1024,
+		    phone : 480
+		};
+		var tableContainer;
+		
+			jQuery(document).ready(function($)
+			{
+				tableContainer = $("#table-1");
+				
+				tableContainer.dataTable({
+					"sPaginationType": "bootstrap",
+					"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+					"bStateSave": true,
+					
+		
+				    // Responsive Settings
+				    bAutoWidth     : false,
+				    fnPreDrawCallback: function () {
+				        // Initialize the responsive datatables helper once.
+				        if (!responsiveHelper) {
+				            responsiveHelper = new ResponsiveDatatablesHelper(tableContainer, breakpointDefinition);
+				        }
+				    },
+				    fnRowCallback  : function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+				        responsiveHelper.createExpandIcon(nRow);
+				    },
+				    fnDrawCallback : function (oSettings) {
+				        responsiveHelper.respond();
+				    }
+				});
+				
+				$(".dataTables_wrapper select").select2({
+					minimumResultsForSearch: -1
+				});
+			});
+		</script>
+		
+	<!-- Imported styles on this page -->
+	<link rel="stylesheet" href="{{ RUTA_PUBLICO|e }}/assets/js/datatables/responsive/css/datatables.responsive.css">
+	<link rel="stylesheet" href="{{ RUTA_PUBLICO|e }}/assets/js/select2/select2-bootstrap.css">
+	<link rel="stylesheet" href="{{ RUTA_PUBLICO|e }}/assets/js/select2/select2.css">
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/jquery.dataTables.min.js"></script>
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/datatables/TableTools.min.js"></script>
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/dataTables.bootstrap.js"></script>
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/datatables/jquery.dataTables.columnFilter.js"></script>
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/datatables/lodash.min.js"></script>
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/datatables/responsive/js/datatables.responsive.js"></script>
+	<script src="{{ RUTA_PUBLICO|e }}/assets/js/select2/select2.min.js"></script>
+		
+	{% endblock %}
+	
+	

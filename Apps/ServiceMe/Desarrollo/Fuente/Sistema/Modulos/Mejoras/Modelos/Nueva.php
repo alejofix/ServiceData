@@ -173,4 +173,21 @@
 			 endif;
 		}
 		
+		/**
+		 * Documentar::Documentar()
+		 * información para Documentar la mejora Creada
+		 *  
+		 * @return object
+		 */
+		public function Documentar() {
+			
+			$qb = $this->entidad->createQueryBuilder();
+				return $qb->select('m')
+					->from('\Entidades\ServiceMe\TblMejoramientoPriMejoras', 'm')
+					->addOrderBy('m.fecha', 'DESC')
+					->where($qb->expr()->in('m.estado', array(1)))
+				 	->getQuery()
+					->getResult();	
+		}
+		
 	}
