@@ -54,7 +54,27 @@
 		 * @Formato({"trim", "mb_strtoupper"})
 		 */
 		private $descripcion;
-
+		
+		/**
+		 * @Nombre("mejora")
+		 * @Configuracion(existencia=true, array=false, campos={""})
+		 * @TipoDato(tipo="integer")
+		 * @Proceso(validacion={
+		 * 		@Requerido(mensaje="El campo es requerido"), 
+		 * 		@Numero(mensaje="El campo no es numerico")
+		 * })
+		 * @Formato({"trim"})
+		 */
+		private $mejora;
+		
+		public function getMejora() {
+			return $this->mejora;
+		}
+		
+		public function setMejora($mejora) {
+			$this->mejora = $mejora;
+		}
+		
 		/**
 		 * AjaxNoAprobado::getId()
 		 *

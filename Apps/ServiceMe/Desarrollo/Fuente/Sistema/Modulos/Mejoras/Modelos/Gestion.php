@@ -72,9 +72,10 @@
 		public function guardarAjaxAprobado($array = array()) {
 			
 			$objetivo = $this->entidad->getRepository('Entidades\ServiceMe\TblMejoramientoSecMejorasObjetivos')->findOneBy(array('id' => $array['id']));
-			$objetivo->setEstado($this->entidad->getRepository('Entidades\ServiceMe\TblGeneralEstados')->findOneBy(array('id' => 7)));
+			$objetivo->setEstado($this->entidad->getRepository('Entidades\ServiceMe\TblGeneralEstados')->findOneBy(array('id' => 8)));
 			
 			$this->entidad->flush();
+			
 			return $objetivo->getEstado()->getNombre();
 		}
 		
@@ -98,6 +99,22 @@
 			$this->entidad->persist($nota);
 			$this->entidad->flush();
 			
+			$this->validacionEstadosMejora($array);
+			
 			return $objetivo->getEstado()->getNombre();
+		}
+		
+		private function validacionEstadosMejora($array = array()) {
+			
+			$objetivos = $this->entidad->getRepository('Entidades\ServiceMe\TblMejoramientoSecMejorasObjetivos')->findBy(array('mejora' => $array['mejora']));
+			//Consulta de no aprobados
+			$aprobacion = $this->entidad->getRepository('Entidades\ServiceMe\TblMejoramientoSecMejorasObjetivos')->findBy(array('mejora' => $array['mejora'], 'estado' => 9));
+			if(count($objetivos) == count($aprobacion)):
+				
+				$consulta = $this->entidad->getRepository('Entidades\ServiceMe\TblMejoramientoPriMejoras')->findOneBy(array('id' => $array['mejora']));
+				$consulta->setEstado($this->entidad->getRepository('Entidades\ServiceMe\TblGeneralEstados')->findOneBy(array('id' => 9)));
+				$this->entidad->flush();
+				
+			endif;
 		}
 	}

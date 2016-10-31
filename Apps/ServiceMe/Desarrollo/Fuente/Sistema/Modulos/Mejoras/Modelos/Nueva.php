@@ -152,24 +152,25 @@
 		 * @return void
 		 */
 		private function procesarArchivos($archivos = array(), $mejora, $estado) {
-			 
-			 if(count($archivos['archivos']['name'])>= 1):
+			 if(array_key_exists('archivos', $archivos) == true):
+			 	if(count($archivos['archivos']['name'])>= 1):
 			 	
-			 	foreach ($archivos['archivos']['name'] AS $index => $valor):
-			 		$nombre = sprintf('%s.%s', sha1(strtotime(date("Y-m-d H:i:s")).$valor), pathinfo($valor, PATHINFO_EXTENSION));
-			 		$adjunto = new \Entidades\ServiceMe\TblMejoramientoSecMejorasAdjuntos();
-			 		$adjunto->setArchivo($nombre);
-			 		$adjunto->setDocumento($valor);
-			 		$adjunto->setFecha(new \DateTime());
-			 		$adjunto->setMejora($mejora);
-			 		$adjunto->setEstado($estado);
-			 		
-			 		$this->entidad->persist($adjunto);
-			 		$this->entidad->flush();
-			 		
-			 		move_uploaded_file($archivos['archivos']['tmp_name'][$index], implode(DIRECTORY_SEPARATOR, array($this->adjuntos, $nombre)));
-			 	endforeach;
-			 	
+				 	foreach ($archivos['archivos']['name'] AS $index => $valor):
+				 		$nombre = sprintf('%s.%s', sha1(strtotime(date("Y-m-d H:i:s")).$valor), pathinfo($valor, PATHINFO_EXTENSION));
+				 		$adjunto = new \Entidades\ServiceMe\TblMejoramientoSecMejorasAdjuntos();
+				 		$adjunto->setArchivo($nombre);
+				 		$adjunto->setDocumento($valor);
+				 		$adjunto->setFecha(new \DateTime());
+				 		$adjunto->setMejora($mejora);
+				 		$adjunto->setEstado($estado);
+				 		
+				 		$this->entidad->persist($adjunto);
+				 		$this->entidad->flush();
+				 		
+				 		move_uploaded_file($archivos['archivos']['tmp_name'][$index], implode(DIRECTORY_SEPARATOR, array($this->adjuntos, $nombre)));
+				 	endforeach;
+				 	
+				 endif;
 			 endif;
 		}
 		

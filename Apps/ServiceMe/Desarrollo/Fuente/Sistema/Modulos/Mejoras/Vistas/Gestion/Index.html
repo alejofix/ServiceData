@@ -69,8 +69,8 @@
 												<div class="comment-time">{{ objetivo.getFechaObjetivo|date("Y-m-d H:i:s")|e }}</div>
 												<div class="action-links" id="action_{{ objetivo.getId|e }}">
 													{% if objetivo.getEstado.getId == 1 %}
-														<a href="javascript:;" class="approve aprobado" data="{{ objetivo.getId|e }}"><i class="entypo-check"></i>Aprobado</a>
-														<a href="javascript:;" class="delete no_aprobado" data="{{ objetivo.getId|e }}"><i class="entypo-cancel"></i>No Aprobado</a>
+														<a href="javascript:;" class="approve aprobado" data="{{ objetivo.getId|e }}" data-mejora="{{ consulta.getId|e }}"><i class="entypo-check"></i>Aprobado</a>
+														<a href="javascript:;" class="delete no_aprobado" data="{{ objetivo.getId|e }}" data-mejora="{{ consulta.getId|e }}"><i class="entypo-cancel"></i>No Aprobado</a>
 													{% else %}
 														<strong>{{ objetivo.getEstado.getNombre|e }}</strong>
 													{% endif %}

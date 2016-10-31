@@ -10,6 +10,7 @@
 		aprobado: function() {
 			jQuery(".aprobado").click(function() {
 				var id = jQuery(this).attr('data');
+				var mejora = jQuery(this).attr('data-mejora');
 				swal({
 					title : "Esta usted Seguro",
 					text : "Esta seguro de aprobar este Objetivo",
@@ -20,7 +21,7 @@
 					closeOnConfirm: false
 				},
 				function() {
-					controller.ajaxAprobado({ id : id, token : "da39a3ee5e6b4b0d3255bfef95601890afd80709" });
+					controller.ajaxAprobado({ id : id, mejora : mejora, token : "da39a3ee5e6b4b0d3255bfef95601890afd80709" });
 				});
 			});	
 		},
@@ -47,6 +48,7 @@
 		noAprobado: function(){
 			jQuery(".no_aprobado").click(function() {
 				var id = jQuery(this).attr('data');
+				var mejora = jQuery(this).attr('data-mejora');
 				swal({
 					title: "Objetivo No Aprobado",
 					text: "Escriba la razon para no ser aprobado:",
@@ -65,7 +67,7 @@
 						return false
 					}
 					
-					controller.ajaxNoAprobado({ id : id, descripcion : inputValue, token : "da39a3ee5e6b4b0d3255bfef95601890afd80709"});
+					controller.ajaxNoAprobado({ id : id, descripcion : inputValue, mejora : mejora, token : "da39a3ee5e6b4b0d3255bfef95601890afd80709"});
 				});
 			});
 		},

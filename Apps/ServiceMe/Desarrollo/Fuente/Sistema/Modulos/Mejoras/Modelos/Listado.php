@@ -72,7 +72,7 @@
 					->from('\Entidades\ServiceMe\TblMejoramientoPriMejoras', 'm')
 					->innerJoin('m.usuario', 'u')
 					->innerJoin('u.empresa', 'e')
-					->where($qb->expr()->in('m.estado', array(1, 7)))
+					->where($qb->expr()->in('m.estado', array(1, 7, 9)))
 					->andWhere('e.id = :id')
 					->setParameter('id', $id_empresa)
 					->addOrderBy('m.estado', 'DESC')
@@ -82,7 +82,7 @@
 			else:
 				return $qb->select('m')
 					->from('\Entidades\ServiceMe\TblMejoramientoPriMejoras', 'm')
-					->where($qb->expr()->in('m.estado', array(1, 7)))
+					->where($qb->expr()->in('m.estado', array(1, 7, 9)))
 					->addOrderBy('m.estado', 'DESC')
 					->addOrderBy('m.fecha', 'ASC')
 					->getQuery()
