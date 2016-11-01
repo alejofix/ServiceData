@@ -31,9 +31,9 @@
 			echo '<code><pre>';
 		//	print_r($dump);
 			print_r($SQL);
-			$this->conexion->executeQuery('DROP DATABASE servicesql');
-			$this->conexion->executeQuery('CREATE DATABASE servicesql');
-			$this->conexion->executeQuery('USE servicesql');
+			$this->conexion->executeQuery('DROP DATABASE ServiceDataSQL');
+			$this->conexion->executeQuery('CREATE DATABASE ServiceDataSQL');
+			$this->conexion->executeQuery('USE ServiceDataSQL');
 			
 			foreach ($SQL AS $create):
 				$this->conexion->executeQuery($create);

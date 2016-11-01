@@ -38,7 +38,7 @@
 				{% for objetivo in consulta.getObjetivos %}
 					
 						<!--<div class="panel {{ objetivo.getEstado.getId == 9 ? 'panel-danger' : 'panel-warning' }}" data-collapsed="0">-->
-						<div class="panel {{ objetivo.getEstado.getId == 9 ? 'panel-danger' : objetivo.getEstado.getId == 7 ? 'panel-info' : 'panel-warning' }}" data-collapsed="0">
+						<div class="panel {{ objetivo.getEstado.getId == 9 ? 'panel-danger' : objetivo.getEstado.getId == 8 ? 'panel-info' : 'panel-default' }}" data-collapsed="0">
 							<div class="panel-heading">
 								<div class="panel-title">Objetivo {{ loop.index|e }} - {{ objetivo.getFechaObjetivo|date("Y-m-d H:i:s")|e }} - {{ objetivo.getEstado.getNombre|e }}</div>
 							</div>

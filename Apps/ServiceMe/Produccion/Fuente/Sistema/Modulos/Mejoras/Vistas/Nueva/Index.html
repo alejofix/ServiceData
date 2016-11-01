@@ -74,7 +74,7 @@
 						<br /><br /><br />
 						<label class="col-sm-3 control-label">{{ formula.contenedor.proceso.label|e }}</label>
 						<div class="col-sm-5">
-							{{ formula.select(formula.contenedor.proceso, {"SI" : "SI", "NO" : "NO", "SIGUIENTE" : "SIGUIENTE", "SEGUIMIENTO" : "SEGUIMIENTO"})|raw }}
+							{{ formula.select(formula.contenedor.proceso, {"SI" : "SI", "NO" : "NO", "SIGUIENTE" : "SIGUIENTE", "SEGUIMIENTO" : "SEGUIMIENTO", "NODO FINALIZAR" : "NODO FINALIZAR"})|raw }}
 						</div>
 					</div>
 						<div id="contenedorruta" style="margin-top: 8px;"></div>
@@ -108,7 +108,7 @@
 			jQuery(document).ready(function() {
 				
 				jQuery(".ruta_add").click(function() {
-					jQuery("#contenedorruta").append('{% spaceless %}<div class="form-group"><div class="form-group"><label for="field-1" class="col-sm-3 control-label">{{formula.contenedor.ruta.label|e}}</label><div class="col-sm-5">{{formula.contenedor.ruta.campo|raw}}</div></div><div class="form-group"><label for="field-1" class="col-sm-3 control-label">{{formula.contenedor.proceso.label|e}}</label><div class="col-sm-5">{{formula.select(formula.contenedor.proceso,{"SI" : "SI", "NO" : "NO", "SIGUIENTE" : "SIGUIENTE", "SEGUIMIENTO" : "SEGUIMIENTO"})|raw}}</div></div></div>{% endspaceless %}');
+					jQuery("#contenedorruta").append('{% spaceless %}<div class="form-group"><div class="form-group"><label for="field-1" class="col-sm-3 control-label">{{formula.contenedor.ruta.label|e}}</label><div class="col-sm-5">{{formula.contenedor.ruta.campo|raw}}</div></div><div class="form-group"><label for="field-1" class="col-sm-3 control-label">{{formula.contenedor.proceso.label|e}}</label><div class="col-sm-5">{{formula.select(formula.contenedor.proceso,{"SI" : "SI", "NO" : "NO", "SIGUIENTE" : "SIGUIENTE", "SEGUIMIENTO" : "SEGUIMIENTO", "NODO FINALIZAR" : "NODO FINALIZAR"})|raw}}</div></div></div>{% endspaceless %}');
 				});
 				jQuery(".obj_add").click(function() {
 					jQuery("#contenedor").append('{% spaceless %}<div class="form-group"><label class="col-sm-3 control-label">Objetivos</label><div class="col-sm-5"><div class="input-group"><span class="input-group-btn">{{formula.contenedor.obj.campo|raw}}</span></div></div></div>{% endspaceless %}');
@@ -144,4 +144,4 @@
 				    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 				}
 			</style>
-		{% endblock %}
+	{% endblock %}
