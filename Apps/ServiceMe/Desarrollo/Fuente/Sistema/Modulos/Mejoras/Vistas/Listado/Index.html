@@ -39,12 +39,17 @@
 							<td>{{ mejora.getUsuario.getEmpresa.getNombre|title|e }}</td>
 							<td>{{ mejora.getHerramienta|e }}</td>
 							<td>
-								<span class="btn {{ mejora.getEstado.getId == 1 ? 'btn-warning' : 'btn-info' }} btn-block btn-xs">{{ mejora.getEstado.getNombre|e }}</span>
+								<span 
+									class="btn {{ mejora.getEstado.getId == 9 ? 'btn-red btn-block btn-xs' : mejora.getEstado.getId == 7 ? 'btn btn-primary btn-block btn-xs' : 'btn-blue btn-block btn-xs' }} popover-primary" 
+									data-toggle="popover" data-trigger="hover" data-placement="top" 
+									data-content="{{ mejora.getEstado.getId == 9 ? 'Los Objetivos NO fueron Aprobados' : mejora.getEstado.getId == 7 ? 'Mejora en Desarrollo por un Analista ' : 'Objetivos pendientes por Gestionar' }}" 
+									data-original-title="Estado de la Mejora {{ mejora.getEstado.getId == 9 ? 'NO APROBADO' : mejora.getEstado.getId == 7 ? 'ESCALADO' : 'ACTIVO' }}">{{ mejora.getEstado.getNombre|e }}
+								</span>
 							</td>
 							<td>
-								<a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}" class="btn btn-info btn-icon">Observar <i class="entypo-search"></i></a>
+								<a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}" class="btn btn-default btn-icon">Observar <i class="entypo-search"></i></a>
 								{% if app.sesion.Mejoras.actualizar == true and mejora.getEstado.getId == 1  %}
-									<a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}" class="btn btn-danger btn-icon">Gestion <i class="entypo-search"></i></a>
+									<a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}" class="btn btn-blue btn-icon">Gestion <i class="entypo-login"></i></a>
 								{% endif %}
 							</td>
 						</tr>

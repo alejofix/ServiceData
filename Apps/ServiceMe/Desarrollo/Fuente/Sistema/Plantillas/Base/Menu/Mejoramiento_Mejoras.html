@@ -19,7 +19,7 @@
 									<li {{ URL.modulo.controlador =='Observar' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}">Obervar</a></li>		
 								{% endif %}
 								{% if URL.modulo.controlador =='Gestion' %}
-									<li {{ URL.modulo.controlador =='Gestion' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}">Gestion</a></li>		
+									<li {{ URL.modulo.controlador =='Gestion' ? 'class="active"' }}><a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ consulta.getId|e }}">Gestion</a></li>		
 								{% endif %}
 							</ul>
 						</div>

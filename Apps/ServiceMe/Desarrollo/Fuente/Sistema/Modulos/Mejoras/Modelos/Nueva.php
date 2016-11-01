@@ -152,7 +152,7 @@
 		 * @return void
 		 */
 		private function procesarArchivos($archivos = array(), $mejora, $estado) {
-			 if(array_key_exists('archivos', $archivos) == true):
+		//	 if(array_key_exists('archivos', $archivos) == true):
 			 	if(count($archivos['archivos']['name'])>= 1):
 			 	
 				 	foreach ($archivos['archivos']['name'] AS $index => $valor):
@@ -163,15 +163,17 @@
 				 		$adjunto->setFecha(new \DateTime());
 				 		$adjunto->setMejora($mejora);
 				 		$adjunto->setEstado($estado);
+				 	
+							if($valor == true):		
+						 		$this->entidad->persist($adjunto);
+						 		$this->entidad->flush();
+						 		move_uploaded_file($archivos['archivos']['tmp_name'][$index], implode(DIRECTORY_SEPARATOR, array($this->adjuntos, $nombre)));
+						 	endif;	
 				 		
-				 		$this->entidad->persist($adjunto);
-				 		$this->entidad->flush();
-				 		
-				 		move_uploaded_file($archivos['archivos']['tmp_name'][$index], implode(DIRECTORY_SEPARATOR, array($this->adjuntos, $nombre)));
 				 	endforeach;
 				 	
 				 endif;
-			 endif;
+		//	 endif;
 		}
 		
 		/**
