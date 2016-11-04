@@ -16,39 +16,59 @@
 			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
 			<!-- Fin Menu  -->
 		
+			<!-- Mejora ID. #?  Inicio -->
 			<div class="col-md-12">
-				
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title"><strong>Mejora Id.{{ consulta.getId|e }}</strong></div>
+						<div class="panel-options">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a href="#tab-info" data-toggle="tab"><b>Información</b><i class="entypo-info"></i></a>
+								</li>
+								<li>
+									<a href="#tab-rutas" data-toggle="tab"><b>Rutas</b><i class="entypo-flow-cascade"></i></a>
+								</li>
+							</ul>
+						</div>
 					</div>
-					
 					<div class="panel-body">
-						{% include 'Index/InformacionMejora.html' %}
+						
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab-info">
+								{% include 'Index/InformacionMejora.html' %}
+							</div>
+							<div class="tab-pane" id="tab-rutas">
+								<div class="scrollable" data-height="222" data-autohide="0">
+				<!-----------  ------ >
+								{% for proceso in ruta %}
+									
+									{{ proceso.getDescripcion|e }}
+									{{ proceso.getProceso|e }}
+									{{ proceso.mejora.getId|e }}
+									
+								{% endfor %}
+				<!--------------  -------->
+								</div>
+							</div>
+						</div>
 					</div>
-					
 				</div>
-
 			</div>
+			<!-- Mejora ID. #?  Fin -->
 
-			<hr />
-			
 			<div class="col-md-12">
 				
 				{% for objetivo in consulta.getObjetivos %}
 					
-						<!--<div class="panel {{ objetivo.getEstado.getId == 9 ? 'panel-danger' : 'panel-warning' }}" data-collapsed="0">-->
 						<div class="panel {{ objetivo.getEstado.getId == 9 ? 'panel-danger' : objetivo.getEstado.getId == 8 ? 'panel-info' : 'panel-default' }}" data-collapsed="0">
 							<div class="panel-heading">
 								<div class="panel-title">Objetivo {{ loop.index|e }} - {{ objetivo.getFechaObjetivo|date("Y-m-d H:i:s")|e }} - {{ objetivo.getEstado.getNombre|e }}</div>
 							</div>
 							<div class="panel-body">
 								<p><strong>Descripción:</strong> {{ objetivo.getObjetivo|e }}</p>
-								
-								
 								<div class="tab-content">
 									{% if objetivo.getNotas|length >= 1 %}
-										
 										<ol>
 											{% for nota in objetivo.getNotas %}
 												<li class="data_li">
@@ -58,18 +78,17 @@
 												</li>
 											{% endfor %}
 										</ol>
-										
+									{% else %}
 									{% endif %}
 								</div>
 							</div>
 						</div>
 					
-				{% else %}
 					
 				{% endfor %}
 				
 			</div>
 			
 		</div>
-
+		
 	{% endblock %}

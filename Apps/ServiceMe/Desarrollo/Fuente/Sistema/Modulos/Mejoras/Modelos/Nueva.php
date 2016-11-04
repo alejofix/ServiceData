@@ -66,15 +66,15 @@
 		public function guardarMejora($array = array(), $usuario, $archivos = array()) {
 			
 			if(is_dir($this->adjuntos) == false):
-				throw new Excepcion('No existe el directorio de adjuntos de mejoras', 0, APP);
+				throw new Excepcion('No Existe el Directorio de adjuntos de Mejoras', 0, APP);
 			endif;
 			
 			if(is_readable($this->adjuntos) == false):
-				throw new Excepcion('No es posible leer el directorio de adjuntos de mejoras', 0, APP);
+				throw new Excepcion('No es Posible leer el Directorio de adjuntos de Mejoras', 0, APP);
 			endif;
 			
 			if(is_writable($this->adjuntos) == false):
-				throw new Excepcion('No es posible escribir en el directorio de adjuntos de mejoras', 0, APP);
+				throw new Excepcion('No es Posible escribir en el Directorio de adjuntos de Mejoras', 0, APP);
 			endif;
 			
 			$user = $this->entidad->getRepository('\Entidades\ServiceMe\TblUsuarios')->findOneBy(array('usuario' => $usuario));
@@ -178,6 +178,7 @@
 		
 		/**
 		 * Documentar::Documentar()
+		 * 
 		 * información para Documentar la mejora Creada
 		 *  
 		 * @return object
