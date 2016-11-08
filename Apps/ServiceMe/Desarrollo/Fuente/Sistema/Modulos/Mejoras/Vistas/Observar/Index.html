@@ -18,6 +18,7 @@
 		
 			<!-- Mejora ID. #?  Inicio -->
 			<div class="col-md-12">
+				
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<div class="panel-title"><strong>Mejora Id.{{ consulta.getId|e }}</strong></div>
@@ -39,21 +40,12 @@
 								{% include 'Index/InformacionMejora.html' %}
 							</div>
 							<div class="tab-pane" id="tab-rutas">
-								<div class="scrollable" data-height="222" data-autohide="0">
-				<!-----------  ------ >
-								{% for proceso in ruta %}
-									
-									{{ proceso.getDescripcion|e }}
-									{{ proceso.getProceso|e }}
-									{{ proceso.mejora.getId|e }}
-									
-								{% endfor %}
-				<!--------------  -------->
-								</div>
+								{% include 'Index/RutasMejora.html' %}
 							</div>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 			<!-- Mejora ID. #?  Fin -->
 

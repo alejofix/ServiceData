@@ -68,14 +68,16 @@
 		 * 
 		 * @return object 
 		 */
-		public function listadoRutas(){
+		public function listadoRutas($id_mejora = false){
 				
 			$qb = $this->entidad->createQueryBuilder();
 				return $qb->select('r')
 				->from('\Entidades\ServiceMe\TblMejoramientoSecMejorasRutas', 'r')
-			 	->getQuery()
+			 	->innerJoin('r.mejora', 'm')
+			 	->andWhere('m.id = :id')
+				->setParameter('id', $id_mejora)
+				->getQuery()
 				->getResult();	
-
 		}
 		
 	}

@@ -67,7 +67,7 @@
 		 * @TipoDato(tipo="string")
 		 * @Proceso(validacion={
 		 * 		@Requerido(mensaje="El campo Descripción es requerido"), 
-		 * 		@RangoCaracteres(inicio=5, fin=5000, mensaje="El rango de caracteres Descripción es de 5 a 5000")
+		 * 		@RangoCaracteres(inicio=5, fin=275, mensaje="El rango de caracteres Descripción es de 5 a 275")
 		 * })
 		 * @Formato({})
 		 * @Textarea(label="Descripción", class="form-control", placeholder="Ingresar Descripción de Mejora")
@@ -79,9 +79,8 @@
 		 * @Configuracion(existencia=true, array=true, campos={""})
 		 * @TipoDato(tipo="string")
 		 * @Proceso(validacion={
-		 * 		@Requerido(mensaje="El campo es requerido"), 
-		 * 		@MinCaracteres(cantidad=3, mensaje="La cantidad minima de caracteres es 3"), 
-		 * 		@MaxCaracteres(cantidad=5000, mensaje="la cantidad maxima de caracteres es 5000")
+		 * 		@Requerido(mensaje="El campo Objetivo es requerido una vez"), 
+		 * 		@RangoCaracteres(inicio=5, fin=275, mensaje="El rango de caracteres Objetivo es de 5 a 275")
 		 * })
 		 * @Formato({"trim", "mb_strtoupper"})
 		 * @Textarea(label="Objetivo", class="form-control", placeholder="Ingresar Objetivo", array=true)

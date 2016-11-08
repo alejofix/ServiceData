@@ -1,0 +1,39 @@
+		<table class="table table-striped">
+			<thead>
+				
+				{% for proceso in ruta %}
+					{% if proceso.getProceso == true %}
+						<tr>
+					{% else %}
+						<tr style="display: none;">
+					{% endif %}	
+				{% endfor %}
+				
+					<th><h4>Proceso</h4></th>
+					<th><h4>Descripcion Ruta</h4></th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				{% for proceso in ruta %}
+					{% if proceso.getProceso == true %}
+						<tr>
+							<td WIDTH="20%">{{ proceso.getProceso|e }}</td>
+							<td WIDTH="80%">{{ proceso.getDescripcion|e }}</td>
+						</tr>
+					{% else %}
+						<div class="page-error-404">
+							<div class="error-symbol">
+								<a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ consulta.getId|e }}">
+									<i class="entypo-flow-cascade"></i>
+								</a>
+							</div>
+							<div class="error-text">
+								<p>No hay registro de Rutas!</p>
+							</div>
+							<hr />
+						</div>
+					{% endif %}	
+				{% endfor %}
+			</tbody>
+		</table>
