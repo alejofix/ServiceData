@@ -42,7 +42,7 @@
 			var clase = (respuesta.status == true) ? "alert alert-info" : "alert alert-danger";
 			jQuery("#action_" + id).empty().html('<strong>' + respuesta.estado + '</strong>');
 			jQuery("#list_" + id).attr("class", clase);
-			swal("Aprobado!", "Se ha aprobado el objetivo seleccionado.", "success");
+			swal("Aprobado!", "Se ha aprobado el Objetivo seleccionado.", "success");
 		},
 		
 		noAprobado: function(){
@@ -51,7 +51,7 @@
 				var mejora = jQuery(this).attr('data-mejora');
 				swal({
 					title: "Objetivo No Aprobado",
-					text: "Escriba la razon para no ser aprobado:",
+					text: "Escriba la razon para No ser aprobado:",
 					type: "input",
 					showCancelButton: true,
 					closeOnConfirm: false,
@@ -63,7 +63,7 @@
 						return false;
 						
 					if (inputValue === "") {
-						swal.showInputError("Debe ingresar la razón Correspondiente");
+						swal.showInputError("Debe ingresar la Razón Correspondiente");
 						return false
 					}
 					

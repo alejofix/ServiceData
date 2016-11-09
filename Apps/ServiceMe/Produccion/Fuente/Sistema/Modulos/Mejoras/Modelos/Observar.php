@@ -59,4 +59,25 @@
 			return $this->entidad->getRepository('Entidades\ServiceMe\TblMejoramientoPriMejoras')
 						->findOneBy(array('id' => $id));
 		}
+		
+		/**
+		 * listadoRutas::listadoRutas()
+		 * 
+		 * muestra la descripción y el proceso 
+		 * de las rutas asociadas a la mejora
+		 * 
+		 * @return object 
+		 */
+		public function listadoRutas($id_mejora = false){
+				
+			$qb = $this->entidad->createQueryBuilder();
+				return $qb->select('r')
+				->from('\Entidades\ServiceMe\TblMejoramientoSecMejorasRutas', 'r')
+			 	->innerJoin('r.mejora', 'm')
+			 	->andWhere('m.id = :id')
+				->setParameter('id', $id_mejora)
+				->getQuery()
+				->getResult();	
+		}
+		
 	}

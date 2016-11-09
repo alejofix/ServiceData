@@ -22,11 +22,26 @@
 					<div class="panel-heading">
 						<div class="panel-title"><strong>Mejora Id.{{ consulta.getId|e }}</strong></div>
 						<div class="panel-options">
-							<button type="button" class="fixbutton mej_esc">Escalar Mejora <i class="entypo-install"></i></button>
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a href="#tab-info" data-toggle="tab"><b>Información</b><i class="entypo-info"></i></a>
+								</li>
+								<li>
+									<a href="#tab-rutas" data-toggle="tab"><b>Rutas</b><i class="entypo-flow-cascade"></i></a>
+								</li>
+							</ul>
 						</div>
 					</div>
 					<div class="panel-body">
-						{% include 'Index/InformacionMejora.html' %}
+						
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab-info">
+								{% include 'Index/InformacionMejora.html' %}
+							</div>
+							<div class="tab-pane" id="tab-rutas">
+								{% include 'Index/RutasMejora.html' %}
+							</div>
+						</div>
 					</div>
 				</div>
 				
@@ -38,7 +53,14 @@
 					
 					<div class="panel-heading">
 						<div class="panel-title">
-							<h4>Objetivos <span class="badge badge-blue">{{ consulta.getObjetivos|length }}</span></h4>
+							<h4>Objetivos <span class="badge badge-blue">
+							
+							{{ consulta.getObjetivos|length }}
+							
+							</span></h4>
+						</div>
+						<div class="panel-options">
+							<button type="button" class="fixbutton mej_esc">Escalar Mejora <i class="entypo-install"></i></button>
 						</div>
 					</div>
 					
@@ -100,7 +122,7 @@
 					font-weight: bold;
 				}
 				.fixbutton {
-					background-color: #303641; /* Green */
+					background-color: #303641; /* Black */
 				    border: none;
 				    color: white;
 				    padding: 3px 8px;

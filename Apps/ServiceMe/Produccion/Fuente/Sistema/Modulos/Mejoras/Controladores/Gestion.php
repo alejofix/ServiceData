@@ -58,6 +58,7 @@
 			endif;
 			
 			$this->plantilla->parametro('consulta', $this->modelo->consultaMejora($id));
+			$this->plantilla->parametro('ruta', $this->modelo->listaRutas($id));
 			echo $this->plantilla->mostrarPlantilla('Gestion', 'Index.html');
 		}
 		

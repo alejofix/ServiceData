@@ -16,60 +16,65 @@
 			{% include 'Base/Menu/Mejoramiento_Mejoras.html' %}
 			<!-- Fin Menu  -->
 			
-			<!--	<h3>Listado de Mejoras</h1> -->
+			<!--	<h3>Listado de Mejoras</h3> -->
 				
-				<table class="table table-bordered datatable" id="table-1">
+				<table class="table table-bordered datatable" id="table-list">
 					<thead>
-						<tr>
-							<th>#</th>
-							<th>Fecha</th>
-							<th>Usuario</th>
-							<th>Empresa</th>
-							<th>Herramienta</th>
-							<th>Estado</th>
-							<th>Acciones</th>
-						</tr>
+						
+						{% for mejora in consulta %}
+							<tr>
+						{% else %}
+							<tr style="display: none;">						
+						{% endfor %}
+								<th>#</th>
+								<th>Fecha</th>
+								<th>Usuario</th>
+								<th>Empresa</th>
+								<th>Herramienta</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+						
 					</thead>
 					<tbody>
-					{% for mejora in consulta %}	
-						<tr class="odd gradeX">
-							<td>{{ mejora.getId|e }}</td>
-							<td>{{ mejora.getFecha|date("Y-m-d H:i:s")|e }}</td>
-							<td>{{ mejora.getUsuario.getUsuario|e }}</td>
-							<td>{{ mejora.getUsuario.getEmpresa.getNombre|title|e }}</td>
-							<td>{{ mejora.getHerramienta|e }}</td>
-							<td>
-								<span 
-									class="btn {{ mejora.getEstado.getId == 9 ? 'btn-red btn-block btn-xs' : mejora.getEstado.getId == 7 ? 'btn btn-primary btn-block btn-xs' : 'btn-blue btn-block btn-xs' }} popover-primary" 
-									data-toggle="popover" data-trigger="hover" data-placement="top" 
-									data-content="{{ mejora.getEstado.getId == 9 ? 'Los Objetivos NO fueron Aprobados' : mejora.getEstado.getId == 7 ? 'Mejora en Desarrollo por un Analista ' : 'Objetivos pendientes por Gestionar' }}" 
-									data-original-title="Estado de la Mejora {{ mejora.getEstado.getId == 9 ? 'NO APROBADO' : mejora.getEstado.getId == 7 ? 'ESCALADO' : 'ACTIVO' }}">{{ mejora.getEstado.getNombre|e }}
-								</span>
-							</td>
-							<td>
-								<a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}" class="btn btn-default btn-icon">Observar <i class="entypo-search"></i></a>
-								{% if app.sesion.Mejoras.actualizar == true and mejora.getEstado.getId == 1  %}
-									<a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}" class="btn btn-blue btn-icon">Gestion <i class="entypo-login"></i></a>
-								{% endif %}
-							</td>
-						</tr>
-					{% else %}
-					<hr />
-					<div class="page-error-404">
-						<div class="error-symbol">
-							<a href="{{ RUTA_APP|e }}/Mejoras/Nueva">
-								<i class="entypo-folder"></i>
-							</a>
-						</div>
-						<div class="error-text">
-							<p>No hay registro de Mejoras!</p>
-						</div>
-						<hr />
-					</div>
-					<br />
-					{% endfor %}	
-						</tbody>
-					
+						{% for mejora in consulta %}
+							<tr class="odd gradeX">
+								<td>{{ mejora.getId|e }}</td>
+								<td>{{ mejora.getFecha|date("Y-m-d H:i:s")|e }}</td>
+								<td>{{ mejora.getUsuario.getUsuario|e }}</td>
+								<td>{{ mejora.getUsuario.getEmpresa.getNombre|title|e }}</td>
+								<td>{{ mejora.getHerramienta|e }}</td>
+								<td>
+									<span 
+										class="btn {{ mejora.getEstado.getId == 9 ? 'btn-red btn-block btn-xs' : mejora.getEstado.getId == 7 ? 'btn btn-primary btn-block btn-xs' : 'btn-blue btn-block btn-xs' }} popover-primary" 
+										data-toggle="popover" data-trigger="hover" data-placement="top" 
+										data-content="{{ mejora.getEstado.getId == 9 ? 'Los Objetivos NO fueron Aprobados' : mejora.getEstado.getId == 7 ? 'Mejora en Desarrollo por un Analista ' : 'Objetivos pendientes por Gestionar' }}" 
+										data-original-title="Estado de la Mejora {{ mejora.getEstado.getId == 9 ? 'NO APROBADO' : mejora.getEstado.getId == 7 ? 'ESCALADO' : 'ACTIVO' }}">{{ mejora.getEstado.getNombre|e }}
+									</span>
+								</td>
+								<td>
+									<a href="{{ RUTA_APP|e }}/Mejoras/Observar/Index/{{ mejora.getId|e }}" class="btn btn-default btn-icon">Observar <i class="entypo-search"></i></a>
+									{% if app.sesion.Mejoras.actualizar == true and mejora.getEstado.getId == 1  %}
+										<a href="{{ RUTA_APP|e }}/Mejoras/Gestion/Index/{{ mejora.getId|e }}" class="btn btn-blue btn-icon">Gestion <i class="entypo-login"></i></a>
+									{% endif %}
+								</td>
+							</tr>
+						{% else %}
+							<hr />
+								<div class="page-error-404">
+									<div class="error-symbol">
+										<a href="{{ RUTA_APP|e }}/Mejoras/Nueva">
+											<i class="entypo-folder"></i>
+										</a>
+									</div>
+									<div class="error-text">
+										<p>No hay registro de Mejoras!</p>
+									</div>
+									<hr />
+								</div>
+							<br />
+						{% endfor %}	
+					</tbody>
 				</table>
 
 		</div><!-- body end --> 
@@ -88,7 +93,7 @@
 		
 			jQuery(document).ready(function($)
 			{
-				tableContainer = $("#table-1");
+				tableContainer = $("#table-list");
 				
 				tableContainer.dataTable({
 					"sPaginationType": "bootstrap",

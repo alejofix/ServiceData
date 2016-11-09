@@ -59,10 +59,11 @@
 		public function Index($id = false) {
 			
 			if(is_numeric($id) == false):
-				throw new Excepcion('No es posible mostrar la informacion solicitada', 0, APP);
+				throw new Excepcion('No es posible mostrar la información Solicitada', 0, APP);
 			endif;
 			
 			$this->plantilla->parametro('consulta', $this->modelo->consultaMejora($id));
+			$this->plantilla->parametro('ruta', $this->modelo->listadoRutas($id));
 			echo $this->plantilla->mostrarPlantilla('Observar', 'Index.html');
 		}
 	}
