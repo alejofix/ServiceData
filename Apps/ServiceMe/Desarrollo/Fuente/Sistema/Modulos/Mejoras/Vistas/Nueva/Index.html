@@ -92,7 +92,6 @@
 						</div>
 					</div>
 					
-					
 					{{ formula.fin|raw }}	
 				</div>
 			</div>
@@ -117,6 +116,8 @@
 					jQuery("#adjunto_cont").append('{% spaceless %}<div class="form-group"><label class="col-sm-3 control-label">Adjuntos</label><div class="col-sm-5"><div class="input-group"><span class="input-group-btn">{{formula.contenedor.archivos.campo|raw}}</span></div></div></div>{% endspaceless %}');
 				});
 			});
+			
+			jQuery("#nueva_mejora")[0].reset();
 		</script>
 		
 	{% endblock %}
